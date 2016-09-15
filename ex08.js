@@ -81,3 +81,13 @@ Also contrast apply with Function.prototype.call:
     add.call(null, 10, 20) // => 30
 
 */
+
+function logger(namespace) {
+  return function(){
+    // this seems ugly to me, is there a better way to do this? (without ES6's ...)
+    console.log.apply(null, [namespace].concat([].slice.call(arguments)));
+  };
+}
+
+var info = logger('INFO:');
+info('Some important information', 'with more info', 'and even more info');

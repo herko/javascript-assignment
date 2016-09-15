@@ -27,3 +27,10 @@ Conditions
   * Use Function#bind
 
 */
+
+function logger(namespace) {
+  return console.log.bind(undefined, namespace);
+}
+
+var info = logger('INFO:');
+info('Some important information', 'with more info', 'and even more info');

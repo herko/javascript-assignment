@@ -22,11 +22,16 @@ var map = _.curry(function(fn, collection){
 
 var nicePrint = function(chr){
   return chr.user + ' is ' + chr.age;
-}
+};
 
 /* --- */
 
-var youngest = _.flow( /*  your code */ );
+/*
+ * I've skipped map function and picked the first
+ * element of users SORTED array using _.head() to get the youngest person.
+*/
+
+var youngest = _.flow([ sort('age'), _.head, nicePrint ]);
 
 console.log( youngest(users) ); 
 // pebbles is 1

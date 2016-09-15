@@ -2,10 +2,21 @@
 
 var _ = require('lodash');
 
-var addFiveAndSixAnd = _.partial(/* your code */);
-var power = _.partial(/* your code */);
-var powerTwo = _.partial(/* your code */);
-var powerThree = _.partial(/* your code */);
+var addFiveAndSixAnd = _.partial(function(num1, num2, num3){
+  return num1 + num2 + num3;  
+}, 5, 6);
+
+var power = _.partial(function(base, exponent){
+  return Math.pow(base, exponent);
+}, 2);
+
+var powerTwo = _.partial(function(exponent, base){
+  return Math.pow(base, exponent);
+}, 2);
+
+var powerThree = _.partial(function(exponent, base){
+  return Math.pow(base, exponent);
+}, 3);
 
 
 console.log(addFiveAndSixAnd(4)); //15 (adds 5 + 6 + 4 = 15)

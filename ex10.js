@@ -30,3 +30,27 @@ Create a spy that keeps track of how many times a function is called.
   * Functions have context, input and output. Make sure you consider the context, input to *and output from* the function you are spying on.
 
 */
+
+var Spy = function(object, method){
+  this.count = 0;
+  this.original_method = object[method];
+
+  // Fixing `this` context to be able inside overriding function
+  // I've tried it with () => {} as well since it treats context
+  // differently but I didn't make it work.
+  var self = this;
+
+  object[method] = function() {
+    self.count += 1;
+    self.original_method.apply(undefined, arguments);
+  };
+};
+
+var spy = new Spy(console, 'error');
+
+console.error('calling console.error');
+console.error('calling console.error');
+console.error('calling console.error');
+
+console.log(spy.count);
+

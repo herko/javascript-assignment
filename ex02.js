@@ -1,3 +1,4 @@
+'use strict'
 // you have array of groups.
 // you need to display them in two panels: confirmed and unconfirmed.
 // in each panel groups will be displayed in rows by two.
@@ -19,7 +20,29 @@ var groups = [
 ];
 
 var group = function(groups){
-  /* your code here */
+  var confirmed_array = _
+    .chain(groups)
+    .pickBy(function(group){
+      return group.confirmed == true;
+    })
+    .transform(function(result, n){
+      result.push(n.id);
+    }, [])
+    .chunk(2)
+    .value();
+
+  var unconfirmed_array = _
+    .chain(groups)
+    .pickBy(function(group){
+      return group.confirmed == false;
+    })
+    .transform(function(result, n){
+      result.push(n.id);
+    }, [])
+    .chunk(2)
+    .value();
+
+  return [confirmed_array, unconfirmed_array];
 }
 
 console.log( group(groups) );
